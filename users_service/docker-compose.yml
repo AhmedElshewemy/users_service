@@ -1,0 +1,35 @@
+services:
+  backend_user2:
+    build: ./flask
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./flask:/app
+    depends_on:
+     - mongodb
+    networks:
+      - mangement-projects
+    
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - users-ve:/data/db
+    networks:
+      - mangement-projects
+    # hostname: test_mongodb
+    # # environment:
+    # # - MONGO_INITDB_DATABASE=my_database
+    # # - MONGO_INITDB_ROOT_USERNAME=root
+    # # - MONGO_INITDB_ROOT_PASSWORD=pass
+
+networks:
+  mangement-projects:
+    driver: bridge
+volumes:
+  users-ve:
+    driver: local
+  
+
