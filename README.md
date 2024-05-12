@@ -4,5 +4,7 @@
  
 command run:
 docker compose up -d
+
+
 command down:
 docker compose down
